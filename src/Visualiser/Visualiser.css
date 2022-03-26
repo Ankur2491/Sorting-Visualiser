@@ -1,0 +1,12 @@
+.array-container{
+    position: relative;
+}
+.array-bar{
+    width: 2px;
+    background-color: blue;
+    display: inline-block;
+    margin: 0 1px;
+}
+button{
+    margin-left: 10px;
+}
