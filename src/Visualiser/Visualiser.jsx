@@ -46,13 +46,11 @@ export default class Visualiser extends React.Component {
 
     bubbleSort() {
         const animations = getBubbleSortAnimations(this.state.array);
-        console.log(animations);
         this.renderAnimation(animations);
     }
 
     insertionSort(){
         const animations = getInsertionSortAnimations(this.state.array);
-        console.log(animations);
         this.renderAnimation(animations);
     }
 
