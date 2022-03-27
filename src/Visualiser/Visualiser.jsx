@@ -2,7 +2,8 @@ import React from 'react';
 import './Visualiser.css';
 import {getMergeSortAnimations} from '../Algorithms/MergeSort';
 import {getBubbleSortAnimations} from '../Algorithms/BubbleSort';
-import { getInsertionSortAnimations } from '../Algorithms/InsertionSort';
+import {getInsertionSortAnimations} from '../Algorithms/InsertionSort';
+import {getQuickSortAnimations} from "../Algorithms/QuickSort";
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 1;
 
@@ -49,8 +50,13 @@ export default class Visualiser extends React.Component {
         this.renderAnimation(animations);
     }
 
-    insertionSort(){
+    insertionSort() {
         const animations = getInsertionSortAnimations(this.state.array);
+        this.renderAnimation(animations);
+    }
+
+    quickSort() {
+        const animations = getQuickSortAnimations(this.state.array);
         this.renderAnimation(animations);
     }
 
@@ -106,7 +112,14 @@ export default class Visualiser extends React.Component {
                             </button>
                         </div>
                         <div className="col-md-1">
-                            <button type="button" className="btn btn-primary" onClick={() => this.insertionSort()}>Insertion
+                            <button type="button" className="btn btn-primary"
+                                    onClick={() => this.insertionSort()}>Insertion
+                                Sort
+                            </button>
+                        </div>
+                        <div className="col-md-1">
+                            <button type="button" className="btn btn-primary"
+                                    onClick={() => this.quickSort()}>Quick
                                 Sort
                             </button>
                         </div>
