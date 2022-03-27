@@ -1,7 +1,7 @@
 import React from 'react';
 import './Visualiser.css';
-import { getMergeSortAnimations } from '../Algorithms/SortingAlgorithms';
-import { getBubbleSortAnimations } from '../Algorithms/SortingAlgorithms';
+import {getMergeSortAnimations} from '../Algorithms/MergeSort';
+import {getBubbleSortAnimations} from '../Algorithms/BubbleSort';
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 1;
 
@@ -21,46 +21,35 @@ export default class Visualiser extends React.Component {
             array: [],
         };
     }
+
     componentDidMount() {
         this.resetArray();
     }
+
     resetArray() {
         const array = [];
         for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
             array.push(randomIntFromInterval(5, 530));
         }
-        this.setState({ array });
+        this.setState({array});
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let bar of arrayBars) {
-            bar.style.backgroundColor = "blue";
+            bar.style.backgroundColor = 'blue';
         }
     }
+
     mergeSort() {
         const animations = getMergeSortAnimations(this.state.array);
-        for (let i = 0; i < animations.length; i++) {
-            const arrayBars = document.getElementsByClassName('array-bar');
-            const isColorChange = i % 3 !== 2;
-            if (isColorChange) {
-                const [barOneIdx, barTwoIdx] = animations[i];
-                const barOneStyle = arrayBars[barOneIdx].style;
-                const barTwoStyle = arrayBars[barTwoIdx].style;
-                const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
-                setTimeout(() => {
-                    barOneStyle.backgroundColor = color;
-                    barTwoStyle.backgroundColor = color;
-                }, i * ANIMATION_SPEED_MS);
-            } else {
-                setTimeout(() => {
-                    const [barOneIdx, newHeight] = animations[i];
-                    const barOneStyle = arrayBars[barOneIdx].style;
-                    barOneStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);
-            }
-        }
+        this.renderAnimation(animations);
     }
+
     bubbleSort() {
         const animations = getBubbleSortAnimations(this.state.array);
         console.log(animations);
+        this.renderAnimation(animations);
+    }
+
+    renderAnimation(animations) {
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
             const isColorChange = i % 3 !== 2;
@@ -82,27 +71,34 @@ export default class Visualiser extends React.Component {
             }
         }
     }
+
     render() {
-        const { array } = this.state;
+        const {array} = this.state;
         return (
             <div className="array-container">
                 {array.map((value, idx) =>
-                (
-                    <div className="array-bar"
-                        key={idx}
-                        style={{ height: `${value}px` }}></div>
-                ))}
-                <hr />
+                    (
+                        <div className="array-bar"
+                             key={idx}
+                             style={{height: `${value}px`}}></div>
+                    ))}
+                <hr/>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-2 offset-md-1">
-                            <button type="button" className="btn btn-primary" onClick={() => this.resetArray()}>New Array</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.resetArray()}>New
+                                Array
+                            </button>
                         </div>
                         <div className="col-md-2">
-                            <button type="button" className="btn btn-primary" onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.bubbleSort()}>Bubble
+                                Sort
+                            </button>
                         </div>
                         <div className="col-md-2">
-                            <button type="button" className="btn btn-primary" onClick={() => this.mergeSort()}>Merge Sort</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.mergeSort()}>Merge
+                                Sort
+                            </button>
                         </div>
                         <div className="col-md-2">
                             <select className="form-select" onChange={this.changeDelay}>
@@ -128,6 +124,7 @@ export default class Visualiser extends React.Component {
             </div>
         );
     }
+
     changeDelay = selectedDelay => {
         ANIMATION_SPEED_MS = parseInt(selectedDelay.target.value);
     }
@@ -138,6 +135,7 @@ export default class Visualiser extends React.Component {
         }
     }
 }
+
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
