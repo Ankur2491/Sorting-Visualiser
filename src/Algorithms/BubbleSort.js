@@ -1,8 +1,7 @@
 export function getBubbleSortAnimations(array) {
   const animations = [];
   if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  bubbleSortHelper(array, 0, array.length, auxiliaryArray, animations);
+  bubbleSortHelper(array, 0, array.length, animations);
   return animations;
 }
 
@@ -10,7 +9,6 @@ export function bubbleSortHelper(
   array,
   startIdx,
   endIdx,
-  auxiliaryArray,
   animations
 ) {
   console.log(array);

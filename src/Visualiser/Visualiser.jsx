@@ -2,6 +2,7 @@ import React from 'react';
 import './Visualiser.css';
 import {getMergeSortAnimations} from '../Algorithms/MergeSort';
 import {getBubbleSortAnimations} from '../Algorithms/BubbleSort';
+import { getInsertionSortAnimations } from '../Algorithms/InsertionSort';
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 1;
 
@@ -49,6 +50,12 @@ export default class Visualiser extends React.Component {
         this.renderAnimation(animations);
     }
 
+    insertionSort(){
+        const animations = getInsertionSortAnimations(this.state.array);
+        console.log(animations);
+        this.renderAnimation(animations);
+    }
+
     renderAnimation(animations) {
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
@@ -85,18 +92,23 @@ export default class Visualiser extends React.Component {
                 <hr/>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-2 offset-md-1">
+                        <div className="col-md-1 offset-md-1">
                             <button type="button" className="btn btn-primary" onClick={() => this.resetArray()}>New
                                 Array
                             </button>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-1">
                             <button type="button" className="btn btn-primary" onClick={() => this.bubbleSort()}>Bubble
                                 Sort
                             </button>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-1">
                             <button type="button" className="btn btn-primary" onClick={() => this.mergeSort()}>Merge
+                                Sort
+                            </button>
+                        </div>
+                        <div className="col-md-1">
+                            <button type="button" className="btn btn-primary" onClick={() => this.insertionSort()}>Insertion
                                 Sort
                             </button>
                         </div>
