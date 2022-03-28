@@ -11,7 +11,6 @@ export function bubbleSortHelper(
   endIdx,
   animations
 ) {
-  console.log(array);
   for (let i = startIdx; i < endIdx; i++) {
     for (let j = startIdx; j < endIdx - i - 1; j++) {
       if (array[j] > array[j + 1]) {
@@ -27,5 +26,4 @@ export function bubbleSortHelper(
       }
     }
   }
-  console.log(array);
 }

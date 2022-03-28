@@ -13,7 +13,7 @@ export function insertionSortHelper(
     //in case the first element is already in its correct place.
     let aux = array.slice();
     aux.sort((a,b)=>{return a-b});
-    if(aux[0] == array[0]){
+    if(aux[0] === array[0]){
         animations.push([0,0]);
         animations.push([0,0]);
         animations.push([0, array[0]]);
